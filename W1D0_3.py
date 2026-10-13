@@ -40,10 +40,10 @@ plt.ylabel('Frequency')
 plt.xlabel('$V_m$ (V)')
 
 # Plot a histogram at t_max/10 (add labels and parameters histtype='stepfilled' and linewidth=0)
-plt.hist(v_n[:, int(step_end/10)], bins=nbins, histtype='stepfilled', linewidth=0, label='t = t_max/10')
+plt.hist(v_n[:, int(step_end/10)], bins=nbins, histtype='stepfilled', linewidth=0, label=f't = {t_max/10}s')
 
 # Plot a histogram at t_max (add labels and parameters histtype='stepfilled' and linewidth=0)
-plt.hist(v_n[:, -1], bins=nbins, histtype='stepfilled', linewidth=0, label='t = t_max')
+plt.hist(v_n[:, -1], bins=nbins, histtype='stepfilled', linewidth=0, label=f't = {t_max}s')
 
 # Add legend
 plt.legend()
