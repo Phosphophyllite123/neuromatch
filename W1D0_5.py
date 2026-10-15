@@ -66,6 +66,10 @@ i = i_mean * (1 + 0.1 * (t_max / dt)**(0.5) * (2 * np.random.random([n, step_end
 spikes = {j: [] for j in range(n)}
 spikes_n = np.zeros([step_end])
 
+# Initialize t_ref and last_spike
+t_ref = 0.01
+last_spike = -t_ref * np.ones([n])
+
 
 # Loop over time steps
 for step, t in enumerate(t_range):
@@ -90,6 +94,15 @@ for step, t in enumerate(t_range):
 
 # Collect mean spiking rate
 spikes_mean = spikes_n / n
+
+# Initialize boolean numpy array clamped using last_spike, t and t_ref
+clamped = (last_spike + t_ref > t)
+
+# Reset clamped neurons to vr using clamped
+v_n[clamped,step] = vr
+
+# Update numpy array last_spike with time t for spiking neurons
+last_spike[spiked] = t
 
 # Plot multiple realizations of Vm, spikes and mean spike rate
 plot_all(t_range, v_n, spikes=spikes, spikes_mean=spikes_mean)
